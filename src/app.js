@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const sequelize = new Sequelize('blogapplication', 'samantha_kaylee', null, {
+const sequelize = new Sequelize('groupproject', process.env.POSTGRES_USER, null, {
 	host: 'localhost',
 	dialect: 'postgres'
 });
@@ -22,6 +22,10 @@ app.use(session({
 }));
 
 const User = sequelize.define('user',{
+	username:{
+		type: Sequelize.STRING,
+		unique: true
+	},
 	email: {
 		type: Sequelize.STRING,
 		unique: true
@@ -47,6 +51,7 @@ app.get('/register', function(req,res){
 
 app.post('/register', (req,res)=>{
 	User.create({
+		username: req.body.username,
 		email: req.body.email,
 		password: req.body.password
 	})
@@ -63,8 +68,8 @@ app.get('/login', function(req,res){
 });
 
 app.post('/login', function (req, res) {
-	if(req.body.email.lentgh === 0) {
-		res.redirect('/?message=' + encodeURIComponent("please fill out your email adress"));
+	if(req.body.email.length === 0 || req.body.username.length === 0) {
+		res.redirect('/?message=' + encodeURIComponent("please fill out your email adress or username"));
 	return;
 	}
 
@@ -72,6 +77,7 @@ app.post('/login', function (req, res) {
 		response.redirect('/?message=' + encodeURIComponent("please fill out your password"));
 		return;
 	}
+var username = req.body.username
 var email = req.body.email
 var password = req.body.password
 
@@ -81,6 +87,7 @@ User.findOne({
 	}
 })
 .then(function(user) {
+	console.log('user username '+ user.username)
 	console.log('user email '+ user.email)
 	console.log('user password ' + user.password)
 	if (user != null && password === user.password) {
