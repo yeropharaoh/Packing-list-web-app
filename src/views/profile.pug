@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+	body.background
+		if user
+			div.navbar
+				a(href='./login') HOME
+				a(href='./catogories') CATOGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+			div.text
+				h3 Welcome #{user.username} to your profile page
+				h3 Your email is #{user.email}
+				h3 Your password is #{user.password}
+		else
+			p You must enter your login info first!
+			a(href='/login')
