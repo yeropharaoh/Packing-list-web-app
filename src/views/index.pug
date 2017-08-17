@@ -5,17 +5,13 @@ html
         link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     body.backgroundindex
         div.navbar
-            a(href='./') HOME
-            a(href='./categories') CATEGORIES
-            a(href='./profile') PROFILE
-            a(href='./logout') LOGOUT
-    
+            if user
+                a(href='./') HOME
+                a(href='./categories') CATEGORIES
+                a(href='./profile') PROFILE
+                a(href='./logout') LOGOUT
+            else
         h3#error-message= message
-        //- if user is logged in show 'view profile'
-        if user
-            a.button.btn.btn-large(href='/profile') GO BACK TO YOUR PROFILE 
-        
-        else
         div.container1
             .row.center
                 h1#welcome Welcome to Before you go, go!
