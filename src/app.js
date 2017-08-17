@@ -1,7 +1,8 @@
+const bcrypt = require('bcrypt');
 const Sequelize = require('sequelize');
 const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
+let session = require('express-session');
 
 const sequelize = new Sequelize('groupproject', process.env.POSTGRES_USER, null, {
 	host: 'localhost',
@@ -16,118 +17,133 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + "/../public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(session({
-	secret: "whatever",
-	saveUninitialized: true,
-	resave: false
+    secret: "whatever",
+    saveUninitialized: true,
+    resave: true
 }));
 
-const User = sequelize.define('user',{
-	username:{
-		type: Sequelize.STRING,
-		unique: true
-	},
-	email: {
-		type: Sequelize.STRING,
-		unique: true
-	},
-	password: {
-		type: Sequelize.STRING
-	}
-	},{
-		timestamps:false
-	});
+const User = sequelize.define('users',{
+    username:{
+        type: Sequelize.STRING,
+        unique: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        unique: true
+    },
+    password: {
+        type: Sequelize.STRING
+    }
+    },{
+        timestamps:false
+    });
 
 app.get('/', function(req,res){
-	res.render('index', {
-		message: req.query.message,
-		user: req.session.user
-	});
-});
-
-app.get('/register', function(req,res){
-	console.log(req.session)
-	res.render('register')
+    res.render('index', {
+        message: req.query.message,
+        user: req.session.user
+    });
 });
 
 app.post('/register', (req,res)=>{
-	User.create({
-		username: req.body.username,
-		email: req.body.email,
-		password: req.body.password
-	})
-	.then((user) => {
-		req.session.user = user;
-		res.redirect('/profile');
-	}).catch((error) =>{
-		console.log(error)
-	});
-}); 
-
-app.get('/login', function(req,res){
-	res.render('login', {user:req.session.user})
+    var password = req.body.rgpassword
+      bcrypt.hash(password, 8, (err, hash) => { //created hash for password security
+          if (err) throw err;
+          User.create({
+              username: req.body.rgusername,
+              email: req.body.rgemail,
+              password: hash
+          })
+              .then((user) => {
+                  console.log("User create promise returned success!")
+                  req.session.user = user;
+                  res.redirect('/categories');
+                  console.log('do i make it here?')
+              })
+              .catch((error) => {
+                  console.error(error)
+              })
+    });
 });
 
-app.post('/login', function (req, res) {
-	if(req.body.email.length === 0 || req.body.username.length === 0) {
-		res.redirect('/?message=' + encodeURIComponent("please fill out your email adress or username"));
-	return;
-	}
+app.get('/login', function(req,res){
+    res.render('login', {user:req.session.user})
+});
 
-	if(req.body.password.length === 0) {
-		response.redirect('/?message=' + encodeURIComponent("please fill out your password"));
-		return;
-	}
-var username = req.body.username
-var email = req.body.email
-var password = req.body.password
+app.post('/login', function (request, response) {
+  if(request.body.email.length === 0) {
+    response.redirect('/?message=' + encodeURIComponent("Please fill out your email address or username"));
+    return;
+  }
 
-User.findOne({
-	where: {
-		email: email
-	}
-})
-.then(function(user) {
-	console.log('user username '+ user.username)
-	console.log('user email '+ user.email)
-	console.log('user password ' + user.password)
-	if (user != null && password === user.password) {
-		req.session.user = user;
-		res.redirect('/profile');
-	} else {
-		res.redirect('/?message=' + encodeURIComponent("invalid email or password"));
-	}
-  })
-.catch(function (error) {
-	console.error(error)
-	res.redirect('/?message=' + encodeURIComponent("invalid email or password"));
-	});
+ if (request.body.password.length === 0) {
+    response.redirect('/?message=' + encodeURIComponent("Please fill out your password."));
+    return;
+  }
+  var email = request.body.email
+  var password = request.body.password
+
+ User.findOne({
+          where: {
+              email: email
+          }
+      })
+      .then((user) => {
+        console.log(user);
+        console.log(user.email);
+        bcrypt.compare(password, user.password, (err, res) => { //validates password
+          // if (err) throw err;
+          console.log('Entered hashed password'+ password)
+          console.log('Database password'+user.password);
+          if (res) {
+              request.session.user = user;
+              response.redirect('/categories');
+          } else {
+              response.redirect('/?message=' + encodeURIComponent("Invalid email or password matey."));
+          }
+      })
+    })
+      .catch(function(error) {
+          console.error(error)
+          response.redirect('/?message=' + encodeURIComponent("Aarrrggh! An Error has occurred. Please check the server."));
+      })
+       
 });
 
 app.get('/profile', (req,res)=>{
-	var user = req.session.user;
-	if (user === undefined) {
-		res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
-	} else {
-	res.render('profile', {
-		user: user
-	});
+    var user = req.session.user;
+    if (user === undefined) {
+        res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
+    } else {
+    res.render('profile', {
+        user: user
+    });
    }
 });
 
 app.get('/logout', (req,res)=>{
-	req.session.destroy((error) =>{
-		if(error){
-			throw error;
-		}
-		res.redirect('/?message=' + encodeURIComponent("succesfully logged out"));
-	});
+    req.session.destroy((error) =>{
+        if(error){
+            throw error;
+        }
+        res.redirect('/?message=' + encodeURIComponent("succesfully logged out"));
+    });
 });
 
+app.get('/categories', (req,res)=>{
+  var user = req.session.user;
+  if (user === undefined) {
+    res.redirect('/?message=' + encodeURIComponent("please log in to view the categories"));
+  } else {
+    res.render('categories', {
+      user: user
+    });
+  }
+});
 
-sequelize.sync();
+sequelize.sync({force:false});
 
 app.listen(3000, function(){
-	console.log('Hey is this thing on?!')
+    console.log('Hey is this thing on?!')
 });
-
 

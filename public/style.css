@@ -1,0 +1,112 @@
+/*.background {
+	background: url("https://images.pexels.com/photos/279315/pexels-photo-279315.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-repeat: no-repeat;
+	background-size: 100%
+}*/
+
+.navbar {
+	background-color: #fff;
+	text-align: center;
+}
+
+.navbar a {
+	margin-left: 25px;
+	color: #000;
+	font-size: 25px;
+}
+
+/* *{
+    margin: 0;
+    padding: 0;
+}*/
+
+.backgroundindex{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("https://static.pexels.com/photos/386025/pexels-photo-386025.jpeg")
+}
+
+.container1{
+    text-align: center;
+}
+
+.container2{
+    text-align: center;
+}
+
+.categorysun, .categorysnow, .categorycity {
+	border: 3px solid black;
+	display: inline-block;
+	margin: 20px;
+	border-radius: 20px;
+}
+
+.textsun, .textsnow, .textcity {
+	text-align: center;
+	margin-top: 200px;
+	color: white;
+	text-shadow: 1px;
+}
+
+
+.categorysun {
+	width: 375px;
+	height: 600px;
+background-image: url("https://images.pexels.com/photos/358358/pexels-photo-358358.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.categorysnow {
+	width: 375px;
+	height: 600px;
+	background-image: url("https://static.pexels.com/photos/209955/pexels-photo-209955.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.categorycity {
+	width: 375px;
+	height: 600px;
+	background-image: url("https://images.pexels.com/photos/416998/pexels-photo-416998.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.sidebar, .textprofile {
+	display: inline-block;
+	border: 3px solid black;
+	border-radius: 20px;
+}
+
+.sidebar{
+	text-align: center;
+	width: 200px;
+	height: 1000px;
+	background-image: url("http://www.cynthiagwebu.com/wp-content/uploads/2017/07/white-marble-wallpaper-19.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.textprofile {
+	text-align:center;
+	width: 900px;
+	height: 500px;
+	background-image: url("https://images.pexels.com/photos/399161/pexels-photo-399161.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.social-links {
+	text-align: center;
+	margin-left: 20px;
+}
+
+/*.container1 {
+	text-align: center;
+}*/
+
+#footer {
+
+	margin-top: 250px;
+}

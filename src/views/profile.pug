@@ -2,17 +2,39 @@ doctype html
 html
 	head
 		link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel='stylesheet' href='style.css' type='text/css')
 	body.background
 		if user
 			div.navbar
-				a(href='./login') HOME
-				a(href='./catogories') CATOGORIES
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
 				a(href='./profile') PROFILE
 				a(href='./logout') LOGOUT
-			div.text
+			div.sidebar
+				br
+				button.btn-default#account(type='submit', name='submit') ACCOUNT
+				br
+				br
+				button.btn-default#lists(trype='submit', name='submit') LISTS
+			div.textprofile
 				h3 Welcome #{user.username} to your profile page
 				h3 Your email is #{user.email}
-				h3 Your password is #{user.password}
 		else
-			p You must enter your login info first!
-			a(href='/login')
+				p You must enter your login info first!
+				a(href='/login')
+
+
+				
+		footer#footer
+				div.social-links
+						H3 FIND US
+						a(href='https://www.twitter.com')
+							img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+						a(href='https://www.facebook.com')
+							img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+						a(href='https://www.pinterest.com')
+							img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+						a(href='https://www.instagram.com')
+							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+						p.copyright
+						| © 2017 YEROSAM, All Rights Reserved.
