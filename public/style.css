@@ -198,8 +198,7 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 .show {display:block;}
 
 
-
-#footer {
+#footer1{
 	text-align: center;
 	background: #FFFFFF;
 	position: fixed;
@@ -207,4 +206,11 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
  	left:0;
  	width: 100%;
 
+}
+
+#footer {
+	text-align: center;
+	background: #FFFFFF;
+ 	bottom:0;
+ 	left:0;
 }
