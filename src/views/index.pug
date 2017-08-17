@@ -1,32 +1,84 @@
 doctype html
 html
 	head
+		style
+			include ../../public/style.css
 		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-	body.background
+	body.backgroundindex
 		div.navbar
-			a(href='./') HOME
-			br
-			a(href='./catogories') CATOGORIES
-			br
-			a(href='./profile') PROFILE
-			br
-			a(href='./logout') LOGOUT
-		div.text
-			h1 Welcome to Before you go!
-			h3 Log in here:
-				form('/register', method='POST', autocomplete='off')
-					input(type='text', name='email', placeholder='enter your email')
-					br
-					input(type='password', name='password', placeholder='enter your password')
-					br
-					button.btn.btn-default#register(type='submit', name='submit') LOG IN
+			if user
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+			else
+		h3#error-message= message
 
-
+		//- if user is logged in show 'view profile'
+				
+		div.container1
+			.row.center
+				h1#welcome Welcome to Before you Go, Go!
+				h3 Log in here:
+					form(action='/login', method='POST', autocomplete='off')
+						input#email(type='text', name='email' maxlength="18" required, placeholder='enter your email', style="font-wight: bold")
+						br
+						input#password(type='password', name='password' minlength="8" required, placeholder='enter your password')
+						br
+						button.btn.btn-default#loginbtn1(type="submit", name="submit") LOG IN 
+					button.btn.btn-default#signupbtn(type="submit", name="submit") NO ACCOUNT? REGISTER HERE!
+			
+			//- REGISTER FORM
+		div.container2
 			h3 Register here
 				form(action='/register', method='POST', autocomplete='off')
-					input(type='text', name='email', placeholder='enter your email')
+					input#username(type='text', name='sgusername' maxlength="18" required, placeholder='Enter your username')
 					br
-					input(type='password', name='password', placeholder='choose a password')
+					input#email(type='text', name='rgemail' required, placeholder='Enter your email')
 					br
-					button.btn.btn-default#register(type='submit', value='submit') CREATE A NEW ACCOUNT
+					input#password(type='password', name='rgpassword' minlength="8" required, placeholder='Choose a password')
+					br
+					button.btn.btn-default#createaccountbtn(type="submit", name="rgsubmit1") CREATE A NEW ACCOUNT
+					br
+				button.btn.btn-default#loginbtn2(type="submit", name="sgsubmit2", style="margin-left: 180px") ALREADY GOT AN ACCOUNT? LOG IN
+		
+		//- FOOTER
+		footer#footer
+			div.social-links
+					H3 FIND US
+					a(href='https://www.twitter.com')
+						img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+					a(href='https://www.facebook.com')
+						img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+					a(href='https://www.pinterest.com')
+						img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+					a(href='https://www.instagram.com')
+						img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+					p.copyright
+					| © 2017 YEROSAM, All Rights Reserved.			
+
+		//- /- jQuery
+		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script.
+			$(document).ready(function () {
+				$('#loginbtn1').click(function(event) {
+					if($('#email').val().trim().length === 0 || $('#password').val().trim().length === 0) {
+						event.preventDefault();
+						alert('Your username or password is empty.')
+						//- $('#error-message').html("Your username or password is empty.");
+					}
+				});
+
+				$('.container2').hide();
+
+				$("#signupbtn").on('click', function(){
+					$('.container1').fadeOut("fast");
+					$('.container2').fadeIn("slow");
+								});
+
+				$("#loginbtn2").on('click', function(){
+					$('.container2').fadeOut("fast");
+					$('.container1').fadeIn("slow");
+								});				
+			});					
 		
