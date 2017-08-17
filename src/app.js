@@ -118,6 +118,17 @@ app.get('/categories', (req,res)=>{
    }
 });
 
+app.get('/sunlist', (req,res)=>{
+	var user = req.session.user;
+	if (user === undefined) {
+		res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
+	} else {
+	res.render('sunlist', {
+		user: user
+	});
+   }
+});
+
 app.get('/profile', (req,res)=>{
 	var user = req.session.user;
 	if (user === undefined) {
