@@ -4,26 +4,73 @@ html
 		link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 		link(rel='stylesheet' href='style.css' type='text/css')
 	body.background
+
 		if user
 			div.navbar
 				a(href='./') HOME
 				a(href='./categories') CATEGORIES
 				a(href='./profile') PROFILE
 				a(href='./logout') LOGOUT
-			div.sidebar
-				br
-				button.btn-default#account(type='submit', name='submit') ACCOUNT
-				br
-				br
-				button.btn-default#lists(trype='submit', name='submit') LISTS
-			div.textprofile
-				h3 Welcome #{user.username} to your profile page
-				h3 Your email is #{user.email}
-		else
-				p You must enter your login info first!
-				a(href='/login')
+			container.profile
+				div.sidebar
+					a(name="account" href='./profile')  ACCOUNT      
+				.dropdown
+					button.dropbtn(onclick='myFunction()') LISTS
+				#myDropdown.dropdown-content
+					a#beachlist(href='#') BEACH LIST
+					a#skilist(href='#') SKI LIST
+					a#citylist(href='#') CITY LIST
+					br    
+				div.textprofile(name= "userprofile")
+					h3 Welcome #{user.username} to your profile page
+					h3 Your email is #{user.email}
+
+			script.
+				function myFunction(){
+				document.getElementById("myDropdown").classList.toggle("show");
+				}
+				window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+				}
+				}
+				}
+				}
 
 
+		script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+		script.
+			$(document).ready(function (){
+			$("#beachlist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").addClass("textprofile_beachlist");
+				$("div[name='userprofile']").html("BEACH LIST:")
+				})
+			$("#skilist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").addClass("textprofile_skilist");
+				$("div[name='userprofile']").html("SKI LIST:")
+				})
+			$("#citylist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").addClass("textprofile_citylist");
+				$("div[name='userprofile']").html("CITY LIST:")
+				})
+			$("#account").click(function(){
+				$("div[name='userprofile']").addClass("textprofile");
+			})
+			})
+
+		//- else
+			p You must enter your login info first!
+			a(href='/login')
+
+		 
 				
 		footer#footer
 				div.social-links
@@ -38,3 +85,20 @@ html
 							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
 						p.copyright
 						| © 2017 YEROSAM, All Rights Reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

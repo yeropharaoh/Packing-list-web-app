@@ -142,6 +142,7 @@ app.get('/logout', (req,res)=>{
 });
 
 
+
 sequelize.sync({force:false});
 
 app.listen(3000, function(){
