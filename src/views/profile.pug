@@ -13,7 +13,7 @@ html
 				a(href='./logout') LOGOUT
 			container.profile
 				div.sidebar
-					a(name="account" href='./profile')  ACCOUNT      
+					button#account ACCOUNT     
 				.dropdown
 					button.dropbtn(onclick='myFunction()') LISTS
 				#myDropdown.dropdown-content
@@ -48,21 +48,35 @@ html
 			$(document).ready(function (){
 			$("#beachlist").click(function(){
 				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
 				$("div[name='userprofile']").addClass("textprofile_beachlist");
 				$("div[name='userprofile']").html("BEACH LIST:")
 				})
+
 			$("#skilist").click(function(){
 				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
 				$("div[name='userprofile']").addClass("textprofile_skilist");
 				$("div[name='userprofile']").html("SKI LIST:")
 				})
+
 			$("#citylist").click(function(){
 				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
 				$("div[name='userprofile']").addClass("textprofile_citylist");
 				$("div[name='userprofile']").html("CITY LIST:")
 				})
+
 			$("#account").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
 				$("div[name='userprofile']").addClass("textprofile");
+				$("div[name='userprofile']").html("Welcome #{user.username} to your profile page. Your email is #{user.email}")
+				
 			})
 			})
 
