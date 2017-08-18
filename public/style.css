@@ -64,13 +64,14 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 
 .sidebar, .textprofile, .textprofile_beachlist, .textprofile_skilist, .textprofile_citylist{
 	display: inline-block;
-	border: 3px solid black;
+	border: 3px solid white;
 	border-radius: 20px;
 	margin: 20px;
 	clear: both;
 }
 
 .sidebar{
+	margin-top: -29px;
 	text-align: center;
 	width: 200px;
 	height: 700px;
@@ -109,7 +110,7 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 	text-align:center;
 	width: 900px;
 	height: 500px;
-	background-image: url("https://images.pexels.com/photos/407039/sun-mt-fuji-japan-landscape-407039.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-image: url("https://images.pexels.com/photos/358358/pexels-photo-358358.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
 	background-repeat: no-repeat;
 	background-size: cover;
 	position:absolute;
@@ -118,11 +119,11 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 
 .textprofile_skilist {
 	font-size: 40px;
-	color: black;
+	color: white;
 	text-align:center;
 	width: 900px;
 	height: 500px;
-	background-image: url("https://images.pexels.com/photos/66100/pexels-photo-66100.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-image: url("https://static.pexels.com/photos/209955/pexels-photo-209955.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	position:absolute;
@@ -135,7 +136,7 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 	text-align:center;
 	width: 900px;
 	height: 500px;
-	background-image: url("https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+	background-image: url("https://images.pexels.com/photos/416998/pexels-photo-416998.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
 	background-repeat: no-repeat;
 	background-size: cover;
 	position:absolute;
@@ -148,13 +149,14 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 }
 
 /* Dropdown Button */
-.dropbtn {
+.dropbtn, #account{
     background-color: #C0C0C0;
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: solid black 1px;
+    border: solid white 1px;
     cursor: pointer;
+    border-radius: 20px;
 }
 
 /* Dropdown button on hover & focus */
@@ -165,7 +167,7 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: absolute;
-    top: 220px;
+    top: 200px;
     left: 85px;
    /* display: inline;*/
 }
@@ -179,7 +181,7 @@ background-image: url("https://images.pexels.com/photos/358358/pexels-photo-3583
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    top: 170px;
+    top: 280px;
     left: 40px;
 }
 
