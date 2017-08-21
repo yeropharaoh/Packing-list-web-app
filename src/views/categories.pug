@@ -5,6 +5,7 @@ html
 		link(rel='stylesheet' href='style.css' type='text/css')
 	body.background
 		div.navbar
+
 			if user
 				a(href='./') HOME
 				a(href='./categories') CATEGORIES
@@ -13,10 +14,12 @@ html
 			else
 		h3#error-message= message
 
+
 		div.categories
 			div.categorysun
 				div.textsun
 					h3 BEACH VACATION
+
 					a.button.btn.btn-default#cat1(href='/sunlist', type='submit', name='submit') I CHOOSE SUN
 			div.categorysnow
 				div.textsnow
@@ -28,6 +31,7 @@ html
 					button.btn.btn-default#cat3(href='/citylist', type='submit', name='submit') I CHOOSE EXPLORING
 		   
 			//- FOOTER
+
 			footer#footer
 					div.social-links
 							H3 FIND US
@@ -41,6 +45,7 @@ html
 								img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
 							p.copyright
 							| © 2017 YEROSAM, All Rights Reserved.
+
 
 
 		//- /- jQuery
@@ -57,8 +62,7 @@ html
 					$('.categorycity').fadeTo('fast', 1, function (){
 				  });
 				});
-			
-
 			});
 
 			   
+
