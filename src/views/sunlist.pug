@@ -20,19 +20,23 @@ html
 					a.button.btn.btn-default#cat1(href='/sunlist', type='submit', name='submit') I CHOOSE SUN
 			div.listarea
 				div.sunheader
-					h3 BEACH LIST
+					h3#sunformheader BEACH LIST
 					.button.btn.btn-default#male Male
 					.button.btn.btn-default#female Female
 
 					div.maleform
-						h3 Choose the categories for your packing list!
-							form(action='/malelist', method='POST', autocomplete='off')
-								input#username(type='text', name='sgusername' maxlength="18" required, placeholder='Enter your username')
-								br
-								input#email(type='text', name='rgemail' required, placeholder='Enter your email')			
+						h3 Choose the categories you would like for your packing list!
+					ul#myUL
+						li(data-value = 'Toiletries') Toiletries (e.g. toothbrush, soap, shampoo, etc.)
+						li(data-value = 'Documentation') Documentation (e.g. passport, visa, etc.)
+						li(data-value = 'Clothing') Clothing (e.g. swim trunks, towel, etc.)
+					#myDIV.header
+						input#myInput(type='text', placeholder='Packing category...')
+						span.addBtn(onclick='newElement()') Add packing category
+						br
+						button.btn.btn-large#sunsubmit(type="submit", name="submit") SUBMIT
 
-				
-		   
+	
 		//- FOOTER
 		footer#footer
 				div.social-links
@@ -49,11 +53,44 @@ html
 						| © 2017 YEROSAM, All Rights Reserved.
 
 
-		//- /- jQuery
 		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script
+			include checklist.js
+		//- /- jQuery
 		script.
 			$(document).ready(function () {
-				
-			});
+				$('#sunsubmit').on('click', function(){
+					console.log('hit me babz')
+						$('#myUL').children().each(function(){
+						if(!($(this).hasClass('checked'))){
+							$(this).hide()
+						}
+						else{
+							console.log('zerooooooo')
+						}
+						})
 
-			   
+					// still need to include a reset for the li's incase a user makes a mistake in filtering
+
+					$('#myUL').children().each(function(){
+						console.log(this)
+						$(this).removeClass('checked');
+						
+						$(this).prepend("\u25b6")
+
+
+
+						//still have to make li's unclickable, only hoverable
+
+
+						
+					});
+
+
+				})
+				
+
+
+
+
+				});
