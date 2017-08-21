@@ -1,0 +1,35 @@
+h1
+	i.fa.fa-check
+	| CSS & jQuery To Do Checklist
+form#todo-list
+	span.todo-wrap
+		input#1(type='checkbox', checked='')
+		label.todo(for='1')
+			i.fa.fa-check
+			|       Have a good idea
+		span.delete-item(title='remove')
+			i.fa.fa-times-circle
+	span.todo-wrap
+		input#2(type='checkbox')
+		label.todo(for='2')
+			i.fa.fa-check
+			|       Plan idea execution
+		span.delete-item(title='remove')
+			i.fa.fa-times-circle
+	span.todo-wrap
+		input#3(type='checkbox')
+		label.todo(for='3')
+			i.fa.fa-check
+			|       Execute idea
+		span.delete-item(title='remove')
+			i.fa.fa-times-circle
+	span.todo-wrap
+		input#4(type='checkbox')
+		label.todo(for='4')
+			i.fa.fa-check
+			|       Celebrate with a cold one
+		span.delete-item(title='remove')
+			i.fa.fa-times-circle
+	#add-todo
+		i.fa.fa-plus
+		|     Add an Item

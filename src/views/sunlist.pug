@@ -1,0 +1,96 @@
+doctype html
+html
+	head
+		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet' href='style.css' type='text/css')
+	body.background
+		div.navbar
+			if user
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+			else
+		h3#error-message= message
+
+		div.categoriesSunlist
+			div.categorysunNew
+				div.textsun
+					h3 BEACH VACATION
+					a.button.btn.btn-default#cat1(href='/sunlist', type='submit', name='submit') I CHOOSE SUN
+			div.listarea
+				div.sunheader
+					h3#sunformheader BEACH LIST
+					.button.btn.btn-default#male Male
+					.button.btn.btn-default#female Female
+
+					div.maleform
+						h3 Choose the categories you would like for your packing list!
+					ul#myUL
+						li(data-value = 'Toiletries') Toiletries (e.g. toothbrush, soap, shampoo, etc.)
+						li(data-value = 'Documentation') Documentation (e.g. passport, visa, etc.)
+						li(data-value = 'Clothing') Clothing (e.g. swim trunks, towel, etc.)
+					#myDIV.header
+						input#myInput(type='text', placeholder='Packing category...')
+						span.addBtn(onclick='newElement()') Add packing category
+						br
+						button.btn.btn-large#sunsubmit(type="submit", name="submit") SUBMIT
+
+	
+		//- FOOTER
+		footer#footer
+				div.social-links
+						H3 FIND US
+						a(href='https://www.twitter.com')
+							img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+						a(href='https://www.facebook.com')
+							img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+						a(href='https://www.pinterest.com')
+							img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+						a(href='https://www.instagram.com')
+							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+						p.copyright
+						| © 2017 YEROSAM, All Rights Reserved.
+
+
+		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script
+			include checklist.js
+		//- /- jQuery
+		script.
+			$(document).ready(function () {
+				$('#sunsubmit').on('click', function(){
+					console.log('hit me babz')
+						$('#myUL').children().each(function(){
+						if(!($(this).hasClass('checked'))){
+							$(this).hide()
+						}
+						else{
+							console.log('zerooooooo')
+						}
+						})
+
+					// still need to include a reset for the li's incase a user makes a mistake in filtering
+
+					$('#myUL').children().each(function(){
+						console.log(this)
+						$(this).removeClass('checked');
+						
+						$(this).prepend("\u25b6")
+
+
+
+						//still have to make li's unclickable, only hoverable
+
+
+						
+					});
+
+
+				})
+				
+
+
+
+
+				});
