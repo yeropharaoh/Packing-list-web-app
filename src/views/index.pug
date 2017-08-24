@@ -1,18 +1,18 @@
 doctype html
 html
-	head
-		style
-			include ../../public/style.css
-		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-	body.backgroundindex
-		div.navbar
-			if user
-				a(href='./') HOME
-				a(href='./categories') CATEGORIES
-				a(href='./profile') PROFILE
-				a(href='./logout') LOGOUT
-			else
-		h3#error-message= message
+ head
+ style
+        link(rel='stylesheet' href='style.css' type='text/css')
+        link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    body.backgroundindex
+        div.navbar
+            if user
+                a(href='./') HOME
+                a(href='./categories') CATEGORIES
+                a(href='./profile') PROFILE
+                a(href='./logout') LOGOUT
+            else
+        h3#error-message= message
 
 		//- if user is logged in show 'view profile'
 				
