@@ -4,11 +4,7 @@ const express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 
-
-const sequelize = new Sequelize('groupproject', process.env.POSTGRES_USER, null, {
-  host: 'localhost',
-  dialect: 'postgres'
-});
+let sequelize = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5000/group_proj`);
 
 const app = express();
 
@@ -18,7 +14,6 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + "/../public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(session({
-
 	secret: "whatever",
 	saveUninitialized: true,
 	resave: true
@@ -39,6 +34,11 @@ const User = sequelize.define('users',{
 	},{
 		timestamps:false
 	});
+
+
+const User = sequelize.define('packing_list',{
+	
+}
 
 app.get('/', function(req,res){
 	res.render('index', {
@@ -142,6 +142,12 @@ app.get('/sunlist', (req,res)=>{
 	});
 
    }
+});
+
+app.post('/sunlist', (req,res)=>{
+	var forminfo = req.body 
+	console.log(forminfo)
+	res.redirect('sunlist');
 });
 
 app.get('/profile', (req,res)=>{

@@ -45,15 +45,15 @@ $('#add-todo').click(function(){
 
 // remove items 
 
-$('.delete-item').click(function(){
-  var parentItem = $(this).parent();
-  parentItem.animate({
-    left:"-30%",
-    height:0,
-    opacity:0
-  },200);
-  setTimeout(function(){ $(parentItem).remove(); }, 1000);
-});
+// $('.delete-item').click(function(){
+//   var parentItem = $(this).parent();
+//   parentItem.animate({
+//     left:"-30%",
+//     height:0,
+//     opacity:0
+//   },200);
+//   setTimeout(function(){ $(parentItem).remove(); }, 1000);
+// });
 
 // Enter Key detect
 
