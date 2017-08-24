@@ -4,6 +4,7 @@ const express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 
+
 let sequelize = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5000/group_proj`);
 
 const app = express();
@@ -35,6 +36,11 @@ const User = sequelize.define('users',{
 		timestamps:false
 	});
 
+
+const User = sequelize.define('packing_list',{
+	
+}
+
 app.get('/', function(req,res){
 	res.render('index', {
 		message: req.query.message,
@@ -61,10 +67,11 @@ app.post('/register', (req,res)=>{
 	              console.error(error)
 	          })
 	});
+
 });
 
 app.get('/login', function(req,res){
-	res.render('login', {user:req.session.user})
+    res.render('login', {user:req.session.user})
 });
 
 app.post('/login', function (request, response) {
@@ -73,29 +80,37 @@ app.post('/login', function (request, response) {
     return;
   }
 
-  if (request.body.password.length === 0) {
+
+
+ if (request.body.password.length === 0) {
+
     response.redirect('/?message=' + encodeURIComponent("Please fill out your password."));
     return;
   }
   var email = request.body.email
   var password = request.body.password
 
+
   console.log(password);
 
   User.findOne({
+
           where: {
               email: email
           }
       })
       .then((user) => {
+
       	if (!user){
       		response.redirect('/?message=' + encodeURIComponent("User doesn't exist."));
       	}
+
         else {
         bcrypt.compare(password, user.password, (err, res) => { //validates password
          // console.log('Entered hashed password'+ password)
         // console.log('Database password'+user.password);
          if (res) {
+
          	 request.session.user = user;
              response.redirect('/categories');
      		}
@@ -126,34 +141,38 @@ app.get('/sunlist', (req,res)=>{
 	res.render('sunlist', {
 		user: user
 	});
+
    }
 });
 
+app.post('/sunlist', (req,res)=>{
+	var forminfo = req.body 
+	console.log(forminfo)
+	res.redirect('sunlist');
+});
+
 app.get('/profile', (req,res)=>{
-	var user = req.session.user;
-	if (user === undefined) {
-		res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
-	} else {
-	res.render('profile', {
-		user: user
-	});
+    var user = req.session.user;
+    if (user === undefined) {
+        res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
+    } else {
+    res.render('profile', {
+        user: user
+    });
    }
 });
 
 app.get('/logout', (req,res)=>{
-	req.session.destroy((error) =>{
-		if(error){
-			throw error;
-		}
-		res.redirect('/?message=' + encodeURIComponent("succesfully logged out"));
-	});
+    req.session.destroy((error) =>{
+        if(error){
+            throw error;
+        }
+        res.redirect('/?message=' + encodeURIComponent("succesfully logged out"));
+    });
 });
-
 
 sequelize.sync({force:false});
 
 app.listen(3000, function(){
-	console.log('Hey is this thing on?!')
-});
-
-
+    console.log('Hey is this thing on?!')
+})

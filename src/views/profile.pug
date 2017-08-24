@@ -2,34 +2,109 @@ doctype html
 html
 	head
 		link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel='stylesheet' href='style.css' type='text/css')
 	body.background
-		div.navbar
-			if user
+  
+		if user
+			div.navbar
+
 				a(href='./') HOME
 				a(href='./categories') CATEGORIES
 				a(href='./profile') PROFILE
 				a(href='./logout') LOGOUT
-			else
-		h3#error-message= message
 
-			div.text
-				h3 Welcome #{user.username} to your profile page
-				h3 Your email is #{user.email}
-				h3 Your password is #{user.password}
-		
-		
+			container.profile
+				div.sidebar
+					br
+					button#account ACCOUNT     
+				.dropdown
+					br
+					button.dropbtn(onclick='myFunction()') LISTS
+				#myDropdown.dropdown-content
+					a#beachlist(href='#') BEACH LIST
+					a#skilist(href='#') SKI LIST
+					a#citylist(href='#') CITY LIST
+					br    
+				div.textprofile(name= "userprofile")
+					h3 Welcome #{user.username} to your profile page
+					h3 Email: #{user.email}
+					h3 Telephone Number: 0613131616
+					h3 Gender: Female
+					h3 Hometown: Amsterdam
+					h3 Day of birth: 30-10-1995
 
-		//- FOOTER
+			script.
+				function myFunction(){
+				document.getElementById("myDropdown").classList.toggle("show");
+				}
+				window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+				}
+				}
+				}
+				}
+
+
+		script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+		script.
+			$(document).ready(function (){
+			$("#beachlist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
+				$("div[name='userprofile']").addClass("textprofile_beachlist");
+				$("div[name='userprofile']").html("<h2>BEACH LIST:<h2>")
+				})
+
+			$("#skilist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
+				$("div[name='userprofile']").addClass("textprofile_skilist");
+				$("div[name='userprofile']").html("<h2>SKI LIST:</h2>")
+				})
+
+			$("#citylist").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
+				$("div[name='userprofile']").addClass("textprofile_citylist");
+				$("div[name='userprofile']").html("<h2>CITY LIST:</h2>")
+				})
+
+			$("#account").click(function(){
+				$("div[name='userprofile']").removeClass("textprofile_skilist");
+				$("div[name='userprofile']").removeClass("textprofile_beachlist");
+				$("div[name='userprofile']").removeClass("textprofile_citylist");
+				$("div[name='userprofile']").addClass("textprofile");
+				$("div[name='userprofile']").html("<h3> Welcome #{user.username} to your profile page. Email: #{user.email}</h3>");
+				
+			})
+			})
+
+		//- else
+			p You must enter your login info first!
+			a(href='/login')
+
+		 
+				
 		footer#footer
-			div.social-links
-					H3 FIND US
-					a(href='https://www.twitter.com')
-						img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
-					a(href='https://www.facebook.com')
-						img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
-					a(href='https://www.pinterest.com')
-						img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
-					a(href='https://www.instagram.com')
-						img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
-					p.copyright
-					| © 2017 YEROSAM, All Rights Reserved.
+				div.social-links
+						H3 FIND US
+						a(href='https://www.twitter.com')
+							img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+						a(href='https://www.facebook.com')
+							img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+						a(href='https://www.pinterest.com')
+							img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+						a(href='https://www.instagram.com')
+							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+						p.copyright
+						| © 2017 YEROSAM, All Rights Reserved.
+

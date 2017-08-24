@@ -2,6 +2,7 @@ doctype html
 html
 	head
 		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
 		link(rel='stylesheet' href='style.css' type='text/css')
 	body.background
 		div.navbar
@@ -26,15 +27,84 @@ html
 
 					div.maleform
 						h3 Choose the categories you would like for your packing list!
-					ul#myUL
-						li(data-value = 'Toiletries') Toiletries (e.g. toothbrush, soap, shampoo, etc.)
-						li(data-value = 'Documentation') Documentation (e.g. passport, visa, etc.)
-						li(data-value = 'Clothing') Clothing (e.g. swim trunks, towel, etc.)
-					#myDIV.header
-						input#myInput(type='text', placeholder='Packing category...')
-						span.addBtn(onclick='newElement()') Add packing category
-						br
-						button.btn.btn-large#sunsubmit(type="submit", name="submit") SUBMIT
+					
+						form#todo-list(action='/sunlist' Method='POST')
+							span.todo-wrap
+								input#1(type='checkbox', checked='checked')
+								label.todo(for='1')
+									i.fa.fa-check
+									|       Toiletries (e.g. toothbrush, soap, shampoo, etc.)
+
+									br
+								select#catt1a(name="cat1a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt2a(name="cat2a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt3a(name="cat3a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+										
+
+								//- span.delete-item(title='remove')
+								//- 	i.fa.fa-times-circle
+							span.todo-wrap
+								input#2(type='checkbox', checked='checked')
+								label.todo(for='2')
+									i.fa.fa-check
+									|       Documentation (e.g. passport, visa, etc.)
+								select#catt1b(name="cat1b")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt2b(name="cat2b")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt3b(name="cat3b")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+
+							span.todo-wrap
+								input#3(type='checkbox', checked='checked')
+								label.todo(for='3')
+									i.fa.fa-check
+									|      Clothing (e.g. swim trunks, towel, etc.)
+								select#catt1c(name="cat1c")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt2c(name="cat2c")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt3c(name="cat3c")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+							#add-todo
+								i.fa.fa-plus
+								|     Add a Category
+							
+							button.btn.btn-large#sunsubmit(type="submit", name="submit") SUBMIT	
+							//- select(name="categories")
+							//- 	option(value="toiletries") Toiletries
+							//- 	option(value="documentation") Documentation
+
+						//- li(data-value = 'Toiletries') Toiletries (e.g. toothbrush, soap, shampoo, etc.)
+						//- li(data-value = 'Documentation') Documentation (e.g. passport, visa, etc.)
+						//- li(data-value = 'Clothing') Clothing (e.g. swim trunks, towel, etc.)
+					//- #myDIV.header
+						
+						//- input#myInput(type='text', placeholder='Packing category...')
+						//- span.addBtn(onclick='newElement()') Add packing category
+						//- br
+						
 
 	
 		//- FOOTER
@@ -55,42 +125,131 @@ html
 
 		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
 		script
-			include checklist.js
+			include todolist.js
 		//- /- jQuery
 		script.
 			$(document).ready(function () {
-				$('#sunsubmit').on('click', function(){
-					console.log('hit me babz')
-						$('#myUL').children().each(function(){
-						if(!($(this).hasClass('checked'))){
-							$(this).hide()
-						}
-						else{
-							console.log('zerooooooo')
-						}
-						})
-
-					// still need to include a reset for the li's incase a user makes a mistake in filtering
-
-					$('#myUL').children().each(function(){
-						console.log(this)
-						$(this).removeClass('checked');
-						
-						$(this).prepend("\u25b6")
-
-
-
-						//still have to make li's unclickable, only hoverable
-
-
-						
-					});
-
-
-				})
 				
+					$('input#1').on('click', function(){
+						K("#catt1a");
+					})
+
+					$('input#2').on('click', function(){
+						K("#catt1b");
+					})
+
+					$('input#3').on('click', function(){
+						K("#catt1c");
+					})
+					
+					var K = function(cattno){
+					if(($(cattno).hasClass('hidden'))) {
+						if(!($(this) === $('i.fa.fa-check'))){
+							$(cattno).removeClass('hidden');
+							$(cattno).siblings('select').removeClass('hidden');
+
+							$(cattno).siblings('select').show();
+							$(cattno).show();
+						}
+					} else {
+						if(!($(this) === $('i.fa.fa-check'))) {
+							$(cattno).addClass('hidden');
+							$(cattno).siblings('select').addClass('hidden');
+						}
+					}
+				};
+			
 
 
 
+					//- $('#sunsubmit').on('click', function(){
 
-				});
+					//- 	var data = {};
+				 //-        data.value = $('#1').is(':checked') ? "toiletriezz" : "not selected";
+				 //-        console.log(data)
+				 //-        $.ajax({
+				 //-            type: "POST",
+				 //-            url: "/sunlist",
+				 //-            data: data,
+				 //-            success: function(data){
+				 //-              console.log(data);
+				 //-            }
+				 //-        })
+					//- });
+
+
+			});
+
+
+			
+					
+					//- $('.todo').children().each(function(){
+					//- 	if(!($(this).attr('checked'))){
+					//- 	$(this).hide('#cat1')
+
+					//- }
+					//- else{
+					//- 	console.log('zerooooooo')
+					//- }
+					
+					//- })
+			
+
+				//- 	$('.todo').on('click', function(){
+				//- 		if(!($(this).attr('checked'))){
+				//- 		$('#cat1').hide()
+
+				//- 	}
+				//- 	else{
+				//- 		console.log('zerooooooo')
+				//- 	}
+					
+				//- 	})
+				//- })
+				
+			
+
+
+					
+				//- 
+				//- $('ul#myUL li').each(function(){
+					
+				//- })
+			
+				
+				//- 	var input1 = $('#1').val(); 
+
+				//- 	input1 = $('#li1').text();
+				//- 	console.log(input1)
+
+				//- 	$('#1').html(`<input>${input1}</input>`);
+
+				 //- $('#sunsubmit').on('click', function(){
+				 //- var category1 = $('#li1').data('value')
+				 //- var category2 = $('#li1').data('value')
+				 //- var category3 = $('#li1').data('value')
+						
+						//- $('#male').hide()
+						//- $('#female').hide()
+					//- 	})
+						
+						
+				
+					//- 		// still need to include a reset for the li's incase a user makes a mistake in filtering
+
+					//- $('#myUL').children().each(function(){
+					//- 	console.log(this)
+					//- 	$(this).removeClass('checked');
+						
+					//- 	$(this).prepend("\u25b6")
+
+					//- 	//still have to make li's unclickable, only hoverable					
+					//- });
+				//- })
+				
+				//- });
+
+				//create hidden form (5 inputs)
+				//list ur li's 
+				//bind your li's to the input field in the form
+				//jquery the submit button to display the lis in the form
