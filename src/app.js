@@ -36,9 +36,19 @@ const User = sequelize.define('users',{
 	});
 
 
-const User = sequelize.define('packing_list',{
-	
-}
+const PackingList  = sequelize.define('packing_list',{
+	items:{
+		type: Sequelize.ARRAY(Sequelize.TEXT)
+	},
+	}, {
+		timestamps:false
+	});
+
+
+//Establishing relationships between models
+User.hasOne(PackingList);
+PackingList.belongsTo(User);
+
 
 app.get('/', function(req,res){
 	res.render('index', {
@@ -145,21 +155,63 @@ app.get('/sunlist', (req,res)=>{
 });
 
 app.post('/sunlist', (req,res)=>{
-	var forminfo = req.body 
-	console.log(forminfo)
+	var forminfo = req.body
+	var user = req.session.user;
+
+	var emptyArray1 = []
+	var emptyArray2 = []
+
+for (var X in forminfo) {
+   if ( ! forminfo.hasOwnProperty(X)) {
+      continue;
+   }
+  emptyArray1.push(X);
+  emptyArray2.push(forminfo[X]);
+}
+
+console.log(emptyArray1);
+console.log(emptyArray2);
+console.log(forminfo)
+
+PackingList.create({
+          items: emptyArray2,
+          userId: user.id
+      })
+.then(packinglist =>{
+   var packinglist = packinglist;
+
+   res.render('/profile', {packinglist: packinglist})
+
+})
+
 	res.redirect('sunlist');
 });
 
 app.get('/profile', (req,res)=>{
     var user = req.session.user;
-    if (user === undefined) {
-        res.redirect('/?message=' + encodeURIComponent("please log in to view your profile"))
-    } else {
-    res.render('profile', {
-        user: user
-    });
-   }
+    if (user) {
+    User.findOne({
+    	where: {
+    		id: user.id
+    	}
+    })
+     .then((userfound)=>{
+     	PackingList.findOne({
+     		where: {
+     			userId: user.id
+     		}
+     	})
+     	.then(packinglist=>{
+     		res.render('profile', {user: userfound, packinglist: packinglist})
+     	})
+     
+    })
+}  else {
+  	res.redirect('/?message=' + encodeURIComponent("Please login to view your profile."));
+  }
 });
+
+        
 
 app.get('/logout', (req,res)=>{
     req.session.destroy((error) =>{
