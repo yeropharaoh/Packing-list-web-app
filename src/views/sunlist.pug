@@ -28,7 +28,9 @@ html
 					div.maleform
 						h3 Choose the categories you would like for your packing list!
 					
-						form#todo-list(action='/sunlist' Method='POST')
+							//- NEED TO BE ABLE TO SEND EMPTY FORM!!
+
+						form#todo-list(action='/sunlist' Method='POST' name='form')
 							span.todo-wrap
 								input#1(type='checkbox', checked='checked')
 								label.todo(for='1')
@@ -91,7 +93,7 @@ html
 								i.fa.fa-plus
 								|     Add a Category
 							
-							button.btn.btn-large#sunsubmit(type="submit", name="submit") SUBMIT	
+							input#sunsubmit(type="submit", name="submit" value = 'SUBMIT') 	
 							//- select(name="categories")
 							//- 	option(value="toiletries") Toiletries
 							//- 	option(value="documentation") Documentation
@@ -158,7 +160,7 @@ html
 						}
 					}
 				};
-			
+			});
 
 
 
@@ -178,7 +180,7 @@ html
 					//- });
 
 
-			});
+			
 
 
 			

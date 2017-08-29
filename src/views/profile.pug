@@ -28,11 +28,13 @@ html
 				div.textprofile(name= "userprofile")
 					h3 Welcome #{user.username} to your profile page
 					h3 Email: #{user.email}
-					h3 Telephone Number: 0613131616
-					h3 Gender: Female
-					h3 Hometown: Amsterdam
-					h3 Day of birth: 30-10-1995
-
+					h4 Your packing list!
+					h3#toiletries(data-toiletry-1= packinglist.items[0], data-toiletry-2= packinglist.items[1], data-toiletry-3 = packinglist.items[3]) Toiletries
+					p Your list of toiletries is #{packinglist.items[0]}, #{packinglist.items[1]} and #{packinglist.items[2]}
+					h3 Documentation
+					p Your documentations is #{packinglist.items[3]}, #{packinglist.items[4]} and #{packinglist.items[5]}
+					h3 Clothing (what if you did not submit clothing???)
+					p Your documentations is #{packinglist.items[6]}, #{packinglist.items[7]} and #{packinglist.items[8]}
 			script.
 				function myFunction(){
 				document.getElementById("myDropdown").classList.toggle("show");
@@ -55,11 +57,18 @@ html
 		script.
 			$(document).ready(function (){
 			$("#beachlist").click(function(){
+			var toiletry1 = $("#toiletries").data("toiletry-1");
+			var toiletry3 = $("#toiletries").data("toiletry-2");
+			var toiletry2 = $("#toiletries").data("toiletry-3");
+			
+
 				$("div[name='userprofile']").removeClass("textprofile");
 				$("div[name='userprofile']").removeClass("textprofile_skilist");
 				$("div[name='userprofile']").removeClass("textprofile_citylist");
 				$("div[name='userprofile']").addClass("textprofile_beachlist");
-				$("div[name='userprofile']").html("<h2>BEACH LIST:<h2>")
+				$("div[name='userprofile']").html(`<h2>BEACH LIST:</h2><br><p>Your list of toiletries is ${toiletry1}, ${toiletry2}, ${toiletry3} <h3>Documentation</h3><p>Your documentations is</p>`)
+
+
 				})
 
 			$("#skilist").click(function(){
