@@ -22,8 +22,8 @@ html
 			div.listarea
 				div.sunheader
 					h3#sunformheader BEACH LIST
-					.button.btn.btn-default#male Male
-					.button.btn.btn-default#female Female
+					//- .button.btn.btn-default#male Male
+					//- .button.btn.btn-default#female Female
 
 					div.maleform
 						h3 Choose the categories you would like for your packing list!
@@ -39,17 +39,50 @@ html
 
 									br
 								select#catt1a(name="cat1a")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
 								select#catt2a(name="cat2a")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
 								select#catt3a(name="cat3a")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
+								select#catt4a(name="cat4a")
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
+								select#catt5a(name="cat5a")
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
+								select#catt6a(name="cat6a")
+									option(value="toothbrush/paste") toothbrush/paste
+									option(value="body wash") body wash/lotion
+									option(value="shampoo") shampoo/conditioner
+									option(value="suncreen") sunscreen/aftersun
+									option(value="make-up") make-up
+									option(value="deodorant") deodorant
+
+								
+
 										
 
 								//- span.delete-item(title='remove')
@@ -60,17 +93,17 @@ html
 									i.fa.fa-check
 									|       Documentation (e.g. passport, visa, etc.)
 								select#catt1b(name="cat1b")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
 								select#catt2b(name="cat2b")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
 								select#catt3b(name="cat3b")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
 
 							span.todo-wrap
 								input#3(type='checkbox', checked='checked')
@@ -78,21 +111,102 @@ html
 									i.fa.fa-check
 									|      Clothing (e.g. swim trunks, towel, etc.)
 								select#catt1c(name="cat1c")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
 								select#catt2c(name="cat2c")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
 								select#catt3c(name="cat3c")
-									option(value="toothbrush") toothbrush
-									option(value="soap") soap
-									option(value="shampoo") shampoo
-							#add-todo
-								i.fa.fa-plus
-								|     Add a Category
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt4c(name="cat4c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt5c(name="cat5c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt6c(name="cat6c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt7c(name="cat7c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt8c(name="cat8c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket") jacket
+								select#catt9c(name="cat9c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+									option(value="shirts/tops") shirts/tops
+									option(value="flipflops") flipflops
+									option(value="(beach)bag") (beach)bag
+									option(value="pyjamas") pyjamas
+									option(value="jacket/sweater") jacket/sweater
+
+
 							
+							//- #add-todo
+							//- 	i.fa.fa-plus
+							//- 	|     Add a Category
+							br
 							input#sunsubmit(type="submit", name="submit" value = 'SUBMIT') 	
 							//- select(name="categories")
 							//- 	option(value="toiletries") Toiletries

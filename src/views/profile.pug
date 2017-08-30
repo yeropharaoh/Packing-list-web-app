@@ -29,12 +29,20 @@ html
 					h3 Welcome #{user.username} to your profile page
 					h3 Email: #{user.email}
 					h4 Your packing list!
-					h3#toiletries(data-toiletry-1= packinglist.items[0], data-toiletry-2= packinglist.items[1], data-toiletry-3 = packinglist.items[3]) Toiletries
-					p Your list of toiletries is #{packinglist.items[0]}, #{packinglist.items[1]} and #{packinglist.items[2]}
+					h3#toiletries(data-toiletry-1= packinglist.items[0], data-toiletry-2= packinglist.items[1], data-toiletry-3 = packinglist.items[2], data-toiletry-4= packinglist.items[3], data-toiletry-5= packinglist.items[4], data-toiletry-6= packinglist.items[5])
+					
+					h3#documentation(data-documentation-1= packinglist.items[6], data-documentation-2= packinglist.items[7], data-documentation-3= packinglist.items[8])
+					
+					h3#clothing(data-clothing-1= packinglist.items[9], data-clothing-2= packinglist.items[10], data-clothing-3= packinglist.items[11], data-clothing-4= packinglist.items[12], data-clothing-5= packinglist.items[13], data-clothing-6= packinglist.items[14], data-clothing-7= packinglist.items[15], data-clothing-8= packinglist.items[16], data-clothing-9= packinglist.items[17] ) 
+					
+					h3 Toiletries
+					p Your list of toiletries is #{packinglist.items[0]}, #{packinglist.items[1]}, #{packinglist.items[2]}, #{packinglist.items[3]}, #{packinglist.items[4]} and #{packinglist.items[5]}
+					
 					h3 Documentation
-					p Your documentations is #{packinglist.items[3]}, #{packinglist.items[4]} and #{packinglist.items[5]}
-					h3 Clothing (what if you did not submit clothing???)
 					p Your documentations is #{packinglist.items[6]}, #{packinglist.items[7]} and #{packinglist.items[8]}
+					
+					h3 Clothing 
+					p Your list of clothes are #{packinglist.items[9]}, #{packinglist.items[10]}, #{packinglist.items[11]}, #{packinglist.items[12]}, #{packinglist.items[13]}, #{packinglist.items[14]}, #{packinglist.items[15]}, #{packinglist.items[16]} and #{packinglist.items[17]}
 			script.
 				function myFunction(){
 				document.getElementById("myDropdown").classList.toggle("show");
@@ -58,16 +66,29 @@ html
 			$(document).ready(function (){
 			$("#beachlist").click(function(){
 			var toiletry1 = $("#toiletries").data("toiletry-1");
-			var toiletry3 = $("#toiletries").data("toiletry-2");
-			var toiletry2 = $("#toiletries").data("toiletry-3");
-			
+			var toiletry2 = $("#toiletries").data("toiletry-2");
+			var toiletry3 = $("#toiletries").data("toiletry-3");
+			var toiletry4 = $("#toiletries").data("toiletry-4");
+			var toiletry5 = $("#toiletries").data("toiletry-5");
+			var toiletry6 = $("#toiletries").data("toiletry-6");
+			var documentation1 = $("#documentation").data("documentation-1")
+			var documentation2 = $("#documentation").data("documentation-2")
+			var documentation3 = $("#documentation").data("documentation-3")
+			var clothing1 = $("#clothing").data("clothing-1")
+			var clothing2 = $("#clothing").data("clothing-2")
+			var clothing3 = $("#clothing").data("clothing-3")
+			var clothing4 = $("#clothing").data("clothing-4")
+			var clothing5 = $("#clothing").data("clothing-5")
+			var clothing6 = $("#clothing").data("clothing-6")
+			var clothing7 = $("#clothing").data("clothing-7")
+			var clothing8 = $("#clothing").data("clothing-8")
+			var clothing9 = $("#clothing").data("clothing-9")
 
 				$("div[name='userprofile']").removeClass("textprofile");
 				$("div[name='userprofile']").removeClass("textprofile_skilist");
 				$("div[name='userprofile']").removeClass("textprofile_citylist");
 				$("div[name='userprofile']").addClass("textprofile_beachlist");
-				$("div[name='userprofile']").html(`<h2>BEACH LIST:</h2><br><p>Your list of toiletries is ${toiletry1}, ${toiletry2}, ${toiletry3} <h3>Documentation</h3><p>Your documentations is</p>`)
-
+				$("div[name='userprofile']").html(`<h2>BEACH LIST:</h2><br><h3>Toiletries </h3> <h4>Your list is: </h4> <p>${toiletry1}, ${toiletry2}, ${toiletry3}, ${toiletry4}, ${toiletry5} and ${toiletry6}.</p> <h3>Documentation </h3><h4>Your list is: </h4> <p>${documentation1}, ${documentation2} and ${documentation3}.</p> <h3>Clothing </h3><h4>Your list is: </h4><p>${clothing1}, ${clothing2}, ${clothing3}, ${clothing4}, ${clothing5}, ${clothing6}, ${clothing7}, ${clothing8} and ${clothing9}`)
 
 				})
 

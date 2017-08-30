@@ -4,7 +4,10 @@ const express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 
-let sequelize = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5000/group_proj`);
+const sequelize = new Sequelize('groupproject', 'samantha_kaylee', null, {
+  host: 'localhost',
+  dialect: 'postgres'
+});
 
 const app = express();
 

@@ -292,7 +292,13 @@ body.backgroundindex{
 }
 
 #sunsubmit{
-	color: black;
+	background-color: #C0C0C0;
+	color: red;
+	padding: 16px;
+	font-size: 16px;
+	border: solid white 1px;
+	cursor: pointer;
+	border-radius: 20px;
 }
 
 /*.checkbox{
