@@ -1,0 +1,68 @@
+doctype html
+html
+	head
+		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet' href='style.css' type='text/css')
+	body.background
+		div.navbar
+
+			if user
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+			else
+		h3#error-message= message
+
+
+		div.categories
+			div.categorysun
+				div.textsun
+					h3 BEACH VACATION
+
+					a.button.btn.btn-default#cat1(href='/sunlist', type='submit', name='submit') I CHOOSE SUN
+			div.categorysnow
+				div.textsnow
+					h3 SKI VACATION
+					button.btn.btn-default#cat2(href='/snowlist', type='submit', name='submit') I CHOOSE SNOW
+			div.categorycity
+				div.textcity
+					h3 CITY TRIPS
+					button.btn.btn-default#cat3(href='/citylist', type='submit', name='submit') I CHOOSE EXPLORING
+		   
+			
+			//- FOOTER
+			footer#footer
+					div.social-links
+							H3 FIND US
+							a(href='https://www.twitter.com')
+								img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+							a(href='https://www.facebook.com')
+								img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+							a(href='https://www.pinterest.com')
+								img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+							a(href='https://www.instagram.com')
+								img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+							p.copyright
+							| © 2017 YEROSAM, All Rights Reserved.
+
+
+
+		//- /- jQuery
+		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script.
+			$(document).ready(function () {
+				 $('.categorysun').mouseenter(function() {
+					$('.categorysnow').fadeTo('fast', 0.5, function (){});
+					$('.categorycity').fadeTo('fast', 0.5, function (){
+				  });
+				});
+				 $('.categorysun').mouseleave(function() {
+					$('.categorysnow').fadeTo('fast', 1, function (){});
+					$('.categorycity').fadeTo('fast', 1, function (){
+				  });
+				});
+			});
+
+			   
+

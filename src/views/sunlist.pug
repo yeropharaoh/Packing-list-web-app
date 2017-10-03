@@ -1,0 +1,152 @@
+doctype html
+html
+	head
+		link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+		link(rel='stylesheet' href='style.css' type='text/css')
+	body.background
+		div.navbar
+			if user
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+			else
+		h3#error-message= message
+
+		div.categoriesSunlist
+			div.categorysunNew
+				div.textsun
+					h3 BEACH VACATION
+					a.button.btn.btn-default#cat1(href='/sunlist', type='submit', name='submit') I CHOOSE SUN
+			div.listarea
+				div.sunheader
+					h3#sunformheader BEACH LIST
+					.button.btn.btn-default#male Male
+					.button.btn.btn-default#female Female
+
+					div.maleform
+						h3 Choose the categories you would like for your packing list!
+					
+						form#todo-list(action='/sunlist' Method='POST' name='form')
+							span.todo-wrap
+								input#1(type='checkbox', checked='checked')
+								label.todo(for='1')
+									i.fa.fa-check
+									|       Toiletries (e.g. toothbrush, soap, shampoo, etc.)
+
+									br
+								select#catt1a(name="cat1a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt2a(name="cat2a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+								select#catt3a(name="cat3a")
+									option(value="toothbrush") toothbrush
+									option(value="soap") soap
+									option(value="shampoo") shampoo
+										
+							span.todo-wrap
+								input#2(type='checkbox', checked='checked')
+								label.todo(for='2')
+									i.fa.fa-check
+									|       Documentation (e.g. passport, visa, etc.)
+								select#catt1b(name="cat1b")
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
+								select#catt2b(name="cat2b")
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
+								select#catt3b(name="cat3b")
+									option(value="passport") passport
+									option(value="visa") visa
+									option(value="ticket (train/plane)") ticket (train/plane)
+
+							span.todo-wrap
+								input#3(type='checkbox', checked='checked')
+								label.todo(for='3')
+									i.fa.fa-check
+									|      Clothing (e.g. swim trunks, towel, etc.)
+								select#catt1c(name="cat1c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+								select#catt2c(name="cat2c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts	
+								select#catt3c(name="cat3c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts
+								select#catt4c(name="cat4c")
+									option(value="underwear") underwear
+									option(value="swim trunks/bikinis") swim trunks/bikinis
+									option(value="towels") towels
+									option(value="shorts/skirts") shorts/skirts	
+							#add-todo
+								i.fa.fa-plus
+								|     Add a Category
+							
+							input#sunsubmit(type="submit", name="submit" value = 'SUBMIT')
+		
+		//- FOOTER
+		footer#footer
+				div.social-links
+						H3 FIND US
+						a(href='https://www.twitter.com')
+							img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+						a(href='https://www.facebook.com')
+							img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+						a(href='https://www.pinterest.com')
+							img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+						a(href='https://www.instagram.com')
+							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+						p.copyright
+						| © 2017 YEROSAM, All Rights Reserved.
+
+
+		script(type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script
+			include todolist.js
+		//- jQuery
+		script.
+			$(document).ready(function () {
+				
+					$('input#1').on('click', function(){
+						K("#catt1a");
+					})
+
+					$('input#2').on('click', function(){
+						K("#catt1b");
+					})
+
+					$('input#3').on('click', function(){
+						K("#catt1c");
+					})
+					
+					var K = function(cattno){
+					if(($(cattno).hasClass('hidden'))) {
+						if(!($(this) === $('i.fa.fa-check'))){
+							$(cattno).removeClass('hidden');
+							$(cattno).siblings('select').removeClass('hidden');
+
+							$(cattno).siblings('select').show();
+							$(cattno).show();
+						}
+					} else {
+						if(!($(this) === $('i.fa.fa-check'))) {
+							$(cattno).addClass('hidden');
+							$(cattno).siblings('select').addClass('hidden');
+						}
+					}
+				};
+			});

@@ -1,0 +1,112 @@
+doctype html
+html
+	head
+		link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		link(rel='stylesheet' href='style.css' type='text/css')
+	body.background
+  
+		if user
+			div.navbar
+
+				a(href='./') HOME
+				a(href='./categories') CATEGORIES
+				a(href='./profile') PROFILE
+				a(href='./logout') LOGOUT
+
+			container.profile
+				div.sidebar
+					br
+					button#account ACCOUNT     
+				.dropdown
+					br
+					button.dropbtn(onclick='myFunction()') LISTS
+				#myDropdown.dropdown-content
+					a#beachlist(href='#') BEACH LIST
+					a#skilist(href='#') SKI LIST
+					a#citylist(href='#') CITY LIST
+					br    
+				div.textprofile(name= "userprofile")
+					h3 Welcome #{user.username} to your profile page
+					h3 Email: #{user.email}
+					h4 Your packing list!
+					h3#toiletries(data-toiletry-1= packinglist.items[0], data-toiletry-2= packinglist.items[1], data-toiletry-3 = packinglist.items[3]) Toiletries
+					p Your list of toiletries is #{packinglist.items[0]}, #{packinglist.items[1]} and #{packinglist.items[2]}
+					h3 Documentation
+					p Your documentations is #{packinglist.items[3]}, #{packinglist.items[4]} and #{packinglist.items[5]}
+					h3 Clothing 
+					p Your list of clothes are #{packinglist.items[6]}, #{packinglist.items[7]} and #{packinglist.items[8]}
+			script.
+				function myFunction(){
+				document.getElementById("myDropdown").classList.toggle("show");
+				}
+				window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+							}
+						}
+					}
+				}
+
+		//- FOOTER		
+		footer#footer
+				div.social-links
+						H3 FIND US
+						a(href='https://www.twitter.com')
+							img(src='images/logo-twitter.png', width='40px', height='40px', alt='logo-twitter')
+						a(href='https://www.facebook.com')
+							img(src='images/logo-facebook.png', width='40px', height='40px', alt='logo-facebook')
+						a(href='https://www.pinterest.com')
+							img(src='images/logo-pinterest.png', width='40px', height='40px', alt='logo-pinterest')
+						a(href='https://www.instagram.com')
+							img(src= 'images/logo-instagram.png', width='40px', height='40px', alt='logo-instagram')
+						p.copyright
+						| © 2017 YEROSAM, All Rights Reserved.
+
+		//- jQuery
+		script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+		script.
+			$(document).ready(function (){
+				$("#beachlist").click(function(){
+				var toiletry1 = $("#toiletries").data("toiletry-1");
+				var toiletry3 = $("#toiletries").data("toiletry-2");
+				var toiletry2 = $("#toiletries").data("toiletry-3");
+				
+
+					$("div[name='userprofile']").removeClass("textprofile");
+					$("div[name='userprofile']").removeClass("textprofile_skilist");
+					$("div[name='userprofile']").removeClass("textprofile_citylist");
+					$("div[name='userprofile']").addClass("textprofile_beachlist");
+					$("div[name='userprofile']").html(`<h2>BEACH LIST:</h2><br><p>Your list of toiletries is ${toiletry1}, ${toiletry2}, ${toiletry3} <h3>Documentation</h3><p>Your documentations is</p>`)
+				})
+
+				$("#skilist").click(function(){
+					$("div[name='userprofile']").removeClass("textprofile");
+					$("div[name='userprofile']").removeClass("textprofile_citylist");
+					$("div[name='userprofile']").removeClass("textprofile_beachlist");
+					$("div[name='userprofile']").addClass("textprofile_skilist");
+					$("div[name='userprofile']").html("<h2>SKI LIST:</h2>")
+					})
+
+				$("#citylist").click(function(){
+					$("div[name='userprofile']").removeClass("textprofile");
+					$("div[name='userprofile']").removeClass("textprofile_beachlist");
+					$("div[name='userprofile']").removeClass("textprofile_skilist");
+					$("div[name='userprofile']").addClass("textprofile_citylist");
+					$("div[name='userprofile']").html("<h2>CITY LIST:</h2>")
+					})
+
+				$("#account").click(function(){
+					$("div[name='userprofile']").removeClass("textprofile_skilist");
+					$("div[name='userprofile']").removeClass("textprofile_beachlist");
+					$("div[name='userprofile']").removeClass("textprofile_citylist");
+					$("div[name='userprofile']").addClass("textprofile");
+					$("div[name='userprofile']").html("<h3> Welcome #{user.username} to your profile page. Email: #{user.email}</h3>");
+					})
+			});
+
+
