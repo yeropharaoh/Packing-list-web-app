@@ -5,6 +5,7 @@ const express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 
+// initalize sequelize
 let sequelize = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5000/group_proj`);
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(session({
     resave: true
 }));
 
+// create User table
 const User = sequelize.define('users', {
     username: {
         type: Sequelize.STRING,
@@ -36,7 +38,7 @@ const User = sequelize.define('users', {
     timestamps: false
 });
 
-
+// create Packinglist table
 const PackingList = sequelize.define('packing_list', {
     items: {
         type: Sequelize.ARRAY(Sequelize.TEXT)
